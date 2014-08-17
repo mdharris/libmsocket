@@ -40,6 +40,58 @@
 
 
 /*
+ * lms_str_isipv4() checks if a string is a valid IPv4
+ *                  address or not
+ *
+ * str = the null-terminated string to check
+ *
+ * Returns 1 if ``str'' is a valid IPv4 address and 0 if it is not
+ *
+ */
+uint8_t lms_str_isipv4(const char *str)
+{
+	uint32_t i;
+	uint8_t dotcount, chrcount;
+
+	if (!str)
+	{
+		return(0);
+	}
+
+	i = 0;
+	dotcount = 0;
+	chrcount = 0;
+	while (str[i] != 0)
+	{
+		if ((str[i] != '.') && !(str[i] <= 57) && !(str[i] >= 48))
+		{
+			return(0);
+		}
+		if (str[i] == '.')
+		{
+			dotcount++;
+			chrcount = 0;
+		}
+		else
+		{
+			chrcount++;
+			if (chrcount > 3)
+			{
+				return(0);
+			}
+		}
+		i++;
+	}
+
+	if (dotcount == 3)
+	{
+		return(1);
+	}
+
+	return(0);
+}
+
+/*
  * lms_str_memnuke() clears a memory buffer for real
  *           cast b to (volatile) when calling
  *

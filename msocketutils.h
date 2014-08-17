@@ -52,6 +52,7 @@ extern short lms_file_icanrw(struct stat *fs);
 extern short lms_file_icanr(struct stat *fs);
 
 /* str.c */
+extern uint8_t lms_str_isipv4(const char *str);
 extern void utils_str_memnuke(volatile void *b, size_t sz);
 extern int utils_str_splitchr(const char *str, int c, char **mstr);
 extern int utils_str_splitnum(const char *str, int c, char **mstr, unsigned int num);

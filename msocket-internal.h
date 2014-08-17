@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2008-2014
+ * Copyright (c) 2008 - 2014
  *      Matt Harris.  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -43,6 +43,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdint.h>
 # include <errno.h>
 # include <signal.h>
 # include <ctype.h>
@@ -92,8 +93,8 @@
 # define LMS_DNS_TYPE_TXT		4
 # define LMS_DNS_TYPE_MX		5
 
-# define LMS_VERSION			"0.5"
-# define LMS_VERSION_INT		0x000005
+# define LMS_VERSION			"0.6"
+# define LMS_VERSION_INT		0x000006
 
 # define LMS_HIGHSOCK			32768
 

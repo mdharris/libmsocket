@@ -30,8 +30,8 @@ install:	all
 	-$(LN) -s $(TARGET)/lib/libmsocket.so.0.1 $(TARGET)/lib/libmsocket.so
 
 example:
-	$(CC) $(CFLAGS) $(DFLAGS) -o lms-ex-server Example-server.c $(LFLAGS) -L./ -lmsocket
-	$(CC) $(CFLAGS) $(DFLAGS) -o lms-ex-client Example-client.c $(LFLAGS) -L./ -lmsocket
+	$(CC) $(CFLAGS) $(DFLAGS) -o lms-ex-server Example-server.c $(LFLAGS) -L./ -lmsocket -lssl -lcrypto -levent
+	$(CC) $(CFLAGS) $(DFLAGS) -o lms-ex-client Example-client.c $(LFLAGS) -L./ -lmsocket -lssl -lcrypto -levent
 
 clean:
 	rm -f $(OBJ) $(ARLIB) $(SOLIB)

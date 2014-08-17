@@ -112,7 +112,7 @@ void pfunc(MSocket *m)
 {
 	if (!m) { return; }
 
-	fprintf(stdout, "%s", m->recvQ);
+	fprintf(stdout, "[RECV] %s", m->recvQ);
 	fflush(stdout);
 	lms_socket_freerq(m);
 }
@@ -139,6 +139,7 @@ void dnscallback(Abstract *aptr)
 {
 	MSocket *m;
 	char ipbuf[LMS_LEN_V4ADDR];
+	unsigned char *outbuf;
 
 	if (!aptr) { return; }
 
@@ -161,6 +162,13 @@ void dnscallback(Abstract *aptr)
 		m->func_p = pfunc;
 		m->func_e = efunc;
 		fprintf(stdout, "Connecting to %s:%i\n", m->remotehost, m->remoteport);
+		outbuf = (unsigned char *)malloc(128);
+		if (!outbuf) { exit(1); }
+		memset(outbuf, 0, 128);
+		snprintf(outbuf, 128, "HEAD / HTTP/1.1\nHost: %s\nUser-agent: libmsocket-example-client %s\n\n", m->remotedns, lms_version());
+		fprintf(stdout, "[SEND] HEAD / HTTP/1.1\n[SEND] Host: %s\n[SEND] User-agent: libmsocket-example-client %s\n[SEND] \n", m->remotedns, lms_version());
+		lms_socket_appendq(m, outbuf, strlen(outbuf));
+		free(outbuf);
 	}
 	else
 	{
