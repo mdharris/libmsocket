@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2008
+ * Copyright (c) 2008 - 2014
  *      Matt Harris.  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,7 +47,7 @@ static time_t _lms_loop_lastrun = 0;
  */
 int lms_loop()
 {
-	if (_lms_loop_lastrun < time(NULL))
+	if (_lms_loop_lastrun < time((time_t *)NULL))
 	{
 		lms_socket_housekeeping();
 		lms_dns_cleancache();
