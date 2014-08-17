@@ -76,12 +76,4 @@ extern void free_array(void **ptr);
 extern unsigned char *lms_base64_encode(unsigned char *src, unsigned char *dst, size_t len);
 extern unsigned char *lms_base64_decode(unsigned char *src, unsigned char *dst);
 
-/* passwords.c */
-extern int lms_passwords_encode(char *indata, char *outdata, unsigned short use_b64);
-extern int lms_passwords_check(char *chk, const char *real, unsigned short is_b64);
-extern size_t lms_passwords_len(unsigned short use_b64);
-extern int lms_passwords_encodemulti(char *indata, utils_passwords_data *outdata);
-extern int lms_passwords_checkmulti(char *chk, utils_passwords_data *real);
-extern int lms_passwords_converttomulti(unsigned char *indata, utils_passwords_data *outdata, unsigned short is_b64);
-
 #endif /* INCLUDED_MSOCKETUTILS_H */

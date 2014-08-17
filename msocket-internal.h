@@ -222,20 +222,6 @@ struct _MSocket
 typedef struct _MSocket MSocket;
 
 /*
- * Password data storage structure used by utils_passwords_*multi()
- */
-struct _lms_passwords_data
-{
-	unsigned char version;
-
-	unsigned char salt[8];
-	char salt_b64[17];
-	unsigned char hash[32];
-	char hash_b64[65];
-};
-typedef struct _lms_passwords_data lms_passwords_data;
-
-/*
  * Structure for keeping track of throttled IP addresses to prevent brute-force authentication attacks
  */
 struct _lms_throttle_data
@@ -344,14 +330,6 @@ extern void lms_mux_setprio(MSocket *s, short prio);
 # define lms_base64_dlen(x)			(3 * ((x) / 4 + 1))
 extern unsigned char *lms_base64_encode(unsigned char *src, unsigned char *dst, size_t len);
 extern unsigned char *lms_base64_decode(unsigned char *src, unsigned char *dst);
-
-/* passwords.c */
-extern int lms_passwords_encode(char *indata, char *outdata, unsigned short use_b64);
-extern int lms_passwords_check(char *chk, const char *real, unsigned short is_b64);
-extern size_t lms_passwords_len(unsigned short use_b64);
-extern int lms_passwords_encodemulti(char *indata, lms_passwords_data *outdata);
-extern int lms_passwords_checkmulti(char *chk, lms_passwords_data *real);
-extern int lms_passwords_converttomulti(unsigned char *indata, lms_passwords_data *outdata, unsigned short is_b64);
 
 /* ssl.c */
 extern int lms_ssl_init(void);

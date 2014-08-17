@@ -177,20 +177,6 @@ struct _MSocket
 typedef struct _MSocket MSocket;
 
 /*
- * Password data storage structure used by utils_passwords_*multi()
- */
-struct _lms_passwords_data
-{
-	unsigned char version;
-
-	unsigned char salt[8];
-	char salt_b64[17];
-	unsigned char hash[32];
-	char hash_b64[65];
-};
-typedef struct _lms_passwords_data lms_passwords_data;
-
-/*
  * Structure for keeping track of throttled IP addresses to prevent brute-force authentication attacks
  */
 struct _lms_throttle_data
